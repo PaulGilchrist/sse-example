@@ -21,4 +21,6 @@ curl -X POST -H "Content-Type: application/json" -d '{"info": "Some string"}' -s
 curl -X POST -H "Content-Type: application/json" -d '{"info": "Another string"}' -s http://localhost:3000/topic
 ```
 
-In a real horizontally scalable application, you would need to maintain the list of subscribed clients on a remote centralized cache server like Redis.
+## Notes
+* If using a browser instead of curl, you would first create a window.EventSource() to subscribe, and then bind a handler to its onmessage() function.
+* Do not horizontally scale this service unless first remotly caching the client array and sharing it across all instances.
